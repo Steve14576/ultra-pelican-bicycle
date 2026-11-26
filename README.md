@@ -47,7 +47,7 @@ manufacturing/        切片 / BOM / Cindy 操作手册（M5 起）
 
 ## 当前状态
 
-M0 基线 ✓ ・ M1 调研 ✓ ・ M2 方案 ✓（已冻结）・ M3 建模进行中 ・ M4–M6 待启动。详见 [PLAN.md](PLAN.md)。
+M0 基线 ✓ ・ M1 调研 ✓ ・ M2 方案 ✓ ・ M3 建模 ✓ ・ M4 电控进行中 ・ M5–M6 待启动。详见 [PLAN.md](PLAN.md)。
 
 ## 制造与复现
 
