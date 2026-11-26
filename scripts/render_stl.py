@@ -7,6 +7,7 @@ argv = sys.argv[sys.argv.index("--") + 1:]
 stl_path, png_path = os.path.abspath(argv[0]), os.path.abspath(argv[1])
 os.makedirs(os.path.dirname(png_path), exist_ok=True)
 color = tuple(float(c) for c in argv[2].split(",")) if len(argv) > 2 else (0.7, 0.7, 0.72)
+view = argv[3] if len(argv) > 3 else "iso"
 
 bpy.ops.object.select_all(action='SELECT')
 bpy.ops.object.delete()
@@ -31,9 +32,15 @@ center = sum(corners, Vector()) / 8
 d = max(obj.dimensions)
 
 cam_data = bpy.data.cameras.new("cam")
+cam_data.clip_start = 0.001   # 小零件相机距离近，默认 0.1m 近裁剪会切掉模型
+cam_data.clip_end = 100
 cam = bpy.data.objects.new("cam", cam_data)
 bpy.context.collection.objects.link(cam)
 cam.location = center + Vector((d * 1.1, -d * 1.1, d * 0.8))
+if view == "top":
+    cam.location = center + Vector((0, 0, d * 2.4))
+elif view == "front":
+    cam.location = center + Vector((0, -d * 1.6, d * 0.2))
 target = bpy.data.objects.new("target", None)
 bpy.context.collection.objects.link(target)
 target.location = center

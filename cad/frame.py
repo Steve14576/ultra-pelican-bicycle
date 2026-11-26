@@ -4,29 +4,13 @@
 """
 import os, sys, math
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from build123d import Cylinder, Box, Axis, Align, Pos, export_stl, export_step
+from build123d import Box, export_stl, export_step
+from common import beam, ybore
 from params import WHEELBASE, WHEEL_R, FIT, BEARING_608, mass_g
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "out")
 os.makedirs(OUT, exist_ok=True)
-
-def beam(p1, p2, r):
-    v = [p2[i] - p1[i] for i in range(3)]
-    L = math.sqrt(sum(c * c for c in v))
-    vn = [c / L for c in v]
-    b = Cylinder(r, L, align=(Align.CENTER, Align.CENTER, Align.MIN))
-    cross = (-vn[1], vn[0], 0.0)          # Z × vn
-    cl = math.sqrt(sum(c * c for c in cross))
-    ang = math.degrees(math.acos(max(-1, min(1, vn[2]))))
-    if cl > 1e-9:
-        b = b.rotate(Axis((0, 0, 0), (cross[0] / cl, cross[1] / cl, cross[2] / cl)), ang)
-    return b.translate(p1)
-
-def ybore(center, r, w):
-    c = Cylinder(r, w, align=(Align.CENTER, Align.CENTER, Align.CENTER))
-    c = c.rotate(Axis((0, 0, 0), (1, 0, 0)), 90)
-    return c.translate(center)
 
 # 节点
 R = (0, 0, 50)        # 后轴
