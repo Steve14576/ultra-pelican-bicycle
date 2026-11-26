@@ -47,7 +47,18 @@ manufacturing/        切片 / BOM / Cindy 操作手册（M5 起）
 
 ## 当前状态
 
-M0 基线 ✓ ・ M1 调研 ✓ ・ M2 方案 ✓ ・ M3 建模 ✓ ・ M4 电控进行中 ・ M5–M6 待启动。详见 [PLAN.md](PLAN.md)。
+M0 基线 ✓ ・ M1 调研 ✓ ・ M2 方案 ✓ ・ M3 建模 ✓ ・ M4 电控 ✓ ・ M5 制造包 ✓ ・ M6 交付自查/打包 进行中。详见 [PLAN.md](PLAN.md)。
+
+## 交付物清单（dist/ 打包）
+
+| 类别 | 内容 |
+| --- | --- |
+| 建模 | cad/*.py 参数化源 + cad/out/ STL/STEP |
+| 电控 | electronics/firmware/ 固件源码+PlatformIO 工程；pinout.md 接线表；pcb_carrier.md 载体板设计 |
+| 制造 | manufacturing/bom.csv+md 冻结BOM；slicing.md 切片规范；cindy_manual.md 操作手册 |
+| 校核 | scripts/ 运动学/质心/功率预算/M6核对/渲染/打包 |
+| 文档 | docs/ 调研/方案/建模规范/完整性清单；PROJECT_BRIEF/PLAN |
+| 效果图 | renders/ 整车+各件 QA 图 |
 
 ## 制造与复现
 
