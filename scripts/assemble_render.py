@@ -41,10 +41,8 @@ add("crank_peba", M_peba, (0.095, 0, 0.06))
 add("crank_pulley_petg", M_petg, (0.095, 0, 0.06))
 add("pelican_skeleton_petcf", M_cf)
 add("electronics_tray_petg", M_petg)
-add("pelican_body_tpu", M_white, (0.075, 0, 0.185))
+add("pelican_body_tpu", M_white, (0.075, 0, 0.185))   # 翅已融合进身体
 add("pelican_beak_tpu", M_orange, (0.075, 0, 0.185))
-add("pelican_wing_tpu", M_white, (0.075, 0, 0.185))
-add("pelican_wing_tpu", M_white, (0.075, 0, 0.185), mirror=True)
 
 def limb(name, m, p1, p2):
     v = Vector(p2) - Vector(p1)
