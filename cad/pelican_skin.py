@@ -54,7 +54,7 @@ for o in [body, beak, wingL, wingR]:
 for o, name in [(body, "pelican_body_tpu"), (beak, "pelican_beak_tpu"), (wingL, "pelican_wing_tpu")]:
     bpy.ops.object.select_all(action='DESELECT'); o.select_set(True)
     bpy.context.view_layer.objects.active = o
-    bpy.ops.wm.stl_export(filepath=os.path.join(OUT, name + ".stl"), export_selected_objects=True)
+    bpy.ops.wm.stl_export(filepath=os.path.join(OUT, name + ".stl"), export_selected_objects=True, global_scale=1000)
 
 # 自动取景渲染
 objs = [body, beak, wingL, wingR]
