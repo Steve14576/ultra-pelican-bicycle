@@ -3,8 +3,8 @@
 """
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from build123d import export_stl, export_step
-from common import beam, ybore
+from build123d import export_stl, export_step, chamfer, Axis
+from common import link_solid, ybore
 from params import CRANK_R, FIT, mass_g
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -14,13 +14,17 @@ os.makedirs(OUT, exist_ok=True)
 axle_r = FIT["axle_clear_8"] / 2
 pin_r = FIT["pivot_pin_M3"] / 2
 
-# 曲柄臂 + 轴套 + 脚踏（PEBA，韧耐磨）
-crank = beam((0, 12, 0), (CRANK_R, 12, 0), 5)
-crank += beam((0, -12, 0), (-CRANK_R, -12, 0), 5)
+# 曲柄臂 = 扁平 stadium 连杆（非圆杆拼接）；轴套/脚踏为旋转体轴承座
+crank = link_solid((0, 12, 0), (CRANK_R, 12, 0), 10, 8)
+crank += link_solid((0, -12, 0), (-CRANK_R, -12, 0), 10, 8)
 crank += ybore((0, 0, 0), 7, 26)
 crank -= ybore((0, 0, 0), axle_r, 28)
 crank += ybore((CRANK_R, 16, 0), 6, 14)     # 右脚踏
 crank += ybore((-CRANK_R, -16, 0), 6, 14)   # 左脚踏
+try:
+    crank = chamfer(crank.edges().filter_by(Axis.Y), 0.8)
+except Exception:
+    pass
 crank -= ybore((CRANK_R, 16, 0), pin_r, 16)  # 踝销孔
 crank -= ybore((-CRANK_R, -16, 0), pin_r, 16)
 

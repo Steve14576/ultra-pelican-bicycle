@@ -46,8 +46,8 @@ frame -= ybore(BB, seat_r, PLATE_T + 4)
 frame -= beam((224, 0, 90), (208, 0, 155), 6)
 
 # 助学轮臂 + 电机座
-frame += beam(R, (0, 55, 38), 4)
-frame += beam(R, (0, -55, 38), 4)
+frame += Box(8, 55, 8).translate((0, 27.5, 38))    # 助学轮臂（矩形_bar_）
+frame += Box(8, 55, 8).translate((0, -27.5, 38))
 frame += Box(26, 18, 6).translate((-22, 0, 58))
 
 export_stl(frame, os.path.join(OUT, "frame_petg.stl"))
