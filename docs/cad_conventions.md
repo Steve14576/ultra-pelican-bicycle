@@ -11,7 +11,7 @@
 5. 每零件出 STL/STEP + 渲染 QA（renders/ 纳管）+ 质量属性。
 
 ## 外观 / 非结构件
-鹈鹕软皮等有机造型走 Blender 轨（--background --python），与机构轨分开；骨架仍按结构件规范。
+鹈鹕软皮等有机造型走 Blender 轨：**重叠 primitive join → 体素 remesh 融合 → 平滑 = 单一连续有机曲面**（plush 软体必须无缝）。禁止 primitive 直接拼接（有缝/雪人感）；metaball 需调阈值否则散球，弃用默认。骨架仍按结构件规范。导出 STL 统一毫米（global_scale=1000）。
 
 ## 渲染 QA
 scripts/render_stl.py：包围盒自动取景 + 曝光随尺寸缩放 + 近裁剪 1mm；平面件用 top 视。
