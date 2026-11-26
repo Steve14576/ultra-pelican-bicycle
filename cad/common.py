@@ -1,6 +1,6 @@
-"""共享几何助手：梁（任意方向圆杆）与 Y 向孔/圆柱。所有零件模块复用。"""
+"""共享几何助手：梁（任意方向圆杆）、Y 向孔/圆柱、中面厚线轮廓面。所有零件模块复用。"""
 import math
-from build123d import Cylinder, Axis, Align
+from build123d import Cylinder, Rectangle, Axis, Align
 
 
 def beam(p1, p2, r):
@@ -22,3 +22,15 @@ def ybore(center, r, w):
     c = Cylinder(r, w, align=(Align.CENTER, Align.CENTER, Align.CENTER))
     c = c.rotate(Axis((0, 0, 0), (1, 0, 0)), 90)
     return c.translate(center)
+
+
+def seg_face(p1, p2, t):
+    """X-Z 中面上 p1->p2 的等宽厚线轮廓面（宽 t），供对称挤出成等厚板。"""
+    v = [p2[i] - p1[i] for i in range(3)]
+    L = math.sqrt(sum(c * c for c in v))
+    mid = [(p1[i] + p2[i]) / 2 for i in range(3)]
+    r = Rectangle(L, t)
+    r = r.rotate(Axis((0, 0, 0), (1, 0, 0)), 90)
+    th = -math.degrees(math.atan2(v[2], v[0]))
+    r = r.rotate(Axis((0, 0, 0), (0, 1, 0)), th)
+    return r.translate(mid)

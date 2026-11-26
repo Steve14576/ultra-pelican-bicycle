@@ -6,7 +6,7 @@
 import os, sys, math
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from build123d import Rectangle, Box, Axis, extrude, fillet, chamfer, export_stl, export_step
-from common import beam, ybore
+from common import beam, ybore, seg_face
 from params import WHEELBASE, FIT, mass_g
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -14,18 +14,6 @@ OUT = os.path.join(HERE, "out")
 os.makedirs(OUT, exist_ok=True)
 
 PLATE_T = 14.0   # Y 向等厚
-
-
-def seg_face(p1, p2, t):
-    """X-Z 中面上 p1->p2 的等宽厚线轮廓面（宽 t）。"""
-    v = [p2[i] - p1[i] for i in range(3)]
-    L = math.sqrt(sum(c * c for c in v))
-    mid = [(p1[i] + p2[i]) / 2 for i in range(3)]
-    r = Rectangle(L, t)
-    r = r.rotate(Axis((0, 0, 0), (1, 0, 0)), 90)          # XY -> XZ
-    th = -math.degrees(math.atan2(v[2], v[0]))
-    r = r.rotate(Axis((0, 0, 0), (0, 1, 0)), th)          # 长度对准 v
-    return r.translate(mid)
 
 
 R = (0, 0, 50); BB = (95, 0, 60); S = (75, 0, 160)
