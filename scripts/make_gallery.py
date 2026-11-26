@@ -12,6 +12,7 @@ items = [
     ("assembly_full.png", "整车效果图：鹈鹕骑辅助轮自行车（招牌画面）"),
     ("pelican_skin.png", "鹈鹕软皮：白身 + 橙长嘴 + 喉囊"),
     ("frame_petg.png", "车架 v2：中面轮廓对称挤出等厚板 + 倒角"),
+    ("fork_petg.png", "前叉：转向管 + 双叉片 + 前轴座 + 舵机臂"),
     ("pelican_skeleton_petcf.png", "碳纤骨架：扁平 bar 贴平面连通"),
     ("crank_peba.png", "曲柄：扁平 stadium 连杆 + 脚踏踝销孔"),
     ("thigh_peba.png", "腿连杆：扁平 stadium 带圆眼（低阻铰链）"),
