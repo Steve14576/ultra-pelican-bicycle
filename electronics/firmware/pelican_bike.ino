@@ -16,6 +16,15 @@ const int PIN_SERVO = 7, PIN_LED = 10;
 const int PWM_MAX = 204;          // 80% of 255，护 6V 电机于 7.4V
 const unsigned long CMD_TIMEOUT = 800;
 
+// LEDC API 版本隔离（Arduino-ESP32 core2 通道式 / core3 引脚式）
+#if ESP_ARDUINO_VERSION_MAJOR >= 3
+static void pwmAttach(int pin, uint32_t f, int res) { ledcAttach(pin, f, res); }
+static void pwmWrite(int pin, uint32_t v) { ledcWrite(pin, v); }
+#else
+static void pwmAttach(int pin, uint32_t f, int res) { int ch = (pin == PIN_SERVO) ? 1 : 0; ledcSetup(ch, f, res); ledcAttachPin(pin, ch); }
+static void pwmWrite(int pin, uint32_t v) { int ch = (pin == PIN_SERVO) ? 1 : 0; ledcWrite(ch, v); }
+#endif
+
 WebServer server(80);
 int targetSpeed = 0;              // -255..255
 int currentSpeed = 0;
@@ -60,20 +69,20 @@ void setMotor(int speed) {
   if (speed > 0) { digitalWrite(PIN_AIN1, HIGH); digitalWrite(PIN_AIN2, LOW); }
   else if (speed < 0) { digitalWrite(PIN_AIN1, LOW); digitalWrite(PIN_AIN2, HIGH); }
   else { digitalWrite(PIN_AIN1, LOW); digitalWrite(PIN_AIN2, LOW); }
-  analogWrite(PIN_PWMA, abs(speed));
+  pwmWrite(PIN_PWMA, abs(speed));
 }
 
 void setServo(int angle) {
   // 50Hz(20ms) 16bit：0.5–2.5ms 脉宽映射 0–180°，换算占空比
   int us = map(angle, 0, 180, 500, 2500);
-  ledcWrite(PIN_SERVO, (uint32_t)(us * 65535.0 / 20000.0));
+  pwmWrite(PIN_SERVO, (uint32_t)(us * 65535.0 / 20000.0));
 }
 
 void setup() {
   pinMode(PIN_AIN1, OUTPUT); pinMode(PIN_AIN2, OUTPUT);
   pinMode(PIN_PWMA, OUTPUT); pinMode(PIN_LED, OUTPUT);
-  analogWriteResolution(8);
-  ledcAttach(PIN_SERVO, 50, 16);   // 50Hz 16bit
+  pwmAttach(PIN_PWMA, 20000, 8);
+  pwmAttach(PIN_SERVO, 50, 16);
   setServo(90);
   WiFi.softAP(AP_SSID, AP_PASS);
   server.on("/", handleRoot);
