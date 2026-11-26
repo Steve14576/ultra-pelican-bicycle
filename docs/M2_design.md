@@ -1,6 +1,6 @@
 # M2 机构与电控方案设计
 
-状态：待用户过目冻结（2026-11-27，第三轮：整合关节分类 / 鹈鹕软体本体 / 仿真决策 / 主动抓漏）。依据 [PROJECT_BRIEF.md](../PROJECT_BRIEF.md)、[M1_research.md](M1_research.md)；滚动自查见 [completeness_checklist.md](completeness_checklist.md)；定量校验 [scripts/m2_sanity.py](../scripts/m2_sanity.py)。
+状态：已冻结（2026-11-27，用户安装 Blender/BambuStudio 并授权 git 维护视为认可）。依据 [PROJECT_BRIEF.md](../PROJECT_BRIEF.md)、[M1_research.md](M1_research.md)；滚动自查见 [completeness_checklist.md](completeness_checklist.md)；定量校验 [scripts/m2_sanity.py](../scripts/m2_sanity.py)。
 
 ## 1. 方案一句话
 
