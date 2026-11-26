@@ -24,33 +24,39 @@ bsdf.inputs["Base Color"].default_value = (*color, 1)
 bsdf.inputs["Roughness"].default_value = 0.45
 obj.data.materials.append(mat)
 
-# 相机 + 注视原点
+# 自动取景：以零件包围盒中心为目标，距离/光强随尺寸缩放（任意零件通用）
+from mathutils import Vector
+corners = [obj.matrix_world @ Vector(c) for c in obj.bound_box]
+center = sum(corners, Vector()) / 8
+d = max(obj.dimensions)
+
 cam_data = bpy.data.cameras.new("cam")
 cam = bpy.data.objects.new("cam", cam_data)
 bpy.context.collection.objects.link(cam)
-cam.location = (0.16, -0.16, 0.12)
+cam.location = center + Vector((d * 1.1, -d * 1.1, d * 0.8))
 target = bpy.data.objects.new("target", None)
 bpy.context.collection.objects.link(target)
+target.location = center
 con = cam.constraints.new('TRACK_TO')
 con.target = target
 con.track_axis = 'TRACK_NEGATIVE_Z'
 con.up_axis = 'UP_Y'
 bpy.context.scene.camera = cam
 
-# 面光（主光 + 补光）+ 环境光，保证 QA 图可读
+# 面光（主光+补光）+ 环境光；能量随距离²缩放保证曝光一致
 light_data = bpy.data.lights.new("key", 'AREA')
-light_data.energy = 18
-light_data.size = 0.15
+light_data.energy = 700 * d * d
+light_data.size = d * 1.5
 light = bpy.data.objects.new("key", light_data)
 bpy.context.collection.objects.link(light)
-light.location = (0.12, -0.08, 0.18)
+light.location = center + Vector((d * 0.8, -d * 0.5, d * 1.2))
 
 fill_data = bpy.data.lights.new("fill", 'AREA')
-fill_data.energy = 7
-fill_data.size = 0.2
+fill_data.energy = 250 * d * d
+fill_data.size = d * 2
 fill = bpy.data.objects.new("fill", fill_data)
 bpy.context.collection.objects.link(fill)
-fill.location = (-0.15, 0.12, 0.09)
+fill.location = center + Vector((-d * 1.0, d * 0.8, d * 0.6))
 
 world = bpy.data.worlds.new("w")
 world.use_nodes = True
