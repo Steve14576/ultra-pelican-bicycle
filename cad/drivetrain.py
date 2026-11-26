@@ -31,7 +31,12 @@ crank -= ybore((-CRANK_R, -16, 0), pin_r, 16)
 # 曲柄带轮（PETG，GT2 金属保底）
 pulley = ybore((0, 0, 0), 14, 6) - ybore((0, 0, 0), axle_r, 8)
 
-for name, part, mat in [("crank_peba", crank, "PEBA"), ("crank_pulley_petg", pulley, "PETG")]:
+# 补件：电机带轮（N20 2mm 轴压配）+ 后轴带轮（8mm 轴）——皮带传动闭环必需
+motor_pulley = ybore((0, 0, 0), 8, 6) - ybore((0, 0, 0), 1.0, 8)
+rear_pulley = ybore((0, 0, 0), 14, 6) - ybore((0, 0, 0), axle_r, 8)
+
+for name, part, mat in [("crank_peba", crank, "PEBA"), ("crank_pulley_petg", pulley, "PETG"),
+                        ("motor_pulley_petg", motor_pulley, "PETG"), ("rear_pulley_petg", rear_pulley, "PETG")]:
     export_stl(part, os.path.join(OUT, name + ".stl"))
     export_step(part, os.path.join(OUT, name + ".step"))
     print(f"{name:20s} {mat:5s} mass={mass_g(part.volume, mat):6.1f}g")

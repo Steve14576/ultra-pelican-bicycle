@@ -39,6 +39,9 @@ for y in (0.055, -0.055):
     add("train_tire_tpu", M_tpu, (0, y, 0.038))
 add("crank_peba", M_peba, (0.095, 0, 0.06))
 add("crank_pulley_petg", M_petg, (0.095, 0, 0.06))
+add("motor_pulley_petg", M_petg, (-0.022, 0, 0.058))
+add("rear_pulley_petg", M_petg, (0, 0, 0.05))
+add("fork_petg", M_petg)
 add("pelican_skeleton_petcf", M_cf)
 add("electronics_tray_petg", M_petg)
 add("pelican_body_tpu", M_white, (0.075, 0, 0.185))   # 翅已融合进身体
