@@ -78,6 +78,7 @@
 3. 选板 "ESP32C3 Dev Module"，USB 连 SuperMini，选对应串口。
 4. 点"上传"。等提示完成。
 （若上传失败：按住板上 BOOT 键再点上传，或换 USB 线/口。）
+或直接用预编译镜像：`esptool.py write_flash 0x0 electronics/firmware/firmware.bin`（合并镜像，起始地址 0x0）。
 
 ---
 
