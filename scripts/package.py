@@ -10,7 +10,7 @@ target = os.path.join(DIST, "ultra-pelican-bicycle-deliverable.zip")
 
 include_dirs = ["cad", "electronics", "manufacturing", "docs", "renders", "scripts"]
 include_files = ["README.md", "PLAN.md", "PROJECT_BRIEF.md", ".gitignore"]
-skip = {"__pycache__", ".venv", "scratch", "src", ".pio"}
+skip = {"__pycache__", ".venv", "scratch", "src", ".pio", "seq"}
 
 n = 0
 with zipfile.ZipFile(target, "w", zipfile.ZIP_DEFLATED) as z:
