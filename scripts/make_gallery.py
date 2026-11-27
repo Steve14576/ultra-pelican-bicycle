@@ -31,7 +31,7 @@ for f, cap in items:
         continue
     b = base64.b64encode(open(p, "rb").read()).decode()
     im = Image.open(p).convert("RGB")
-    im.thumbnail((480, 480))
+    im.thumbnail((360, 360))
     buf = io.BytesIO(); im.save(buf, format="PNG", optimize=True)
     b = base64.b64encode(buf.getvalue()).decode()
     cards.append(
