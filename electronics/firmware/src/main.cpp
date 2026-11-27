@@ -1,3 +1,4 @@
+#include <Arduino.h>
 /* Ultra Pelican Bicycle 固件 — ESP32-C3 SuperMini
  * WiFi AP "PelicanBike" + 网页大按钮遥控（前进/后退/左转/右转/停）。
  * DRV8833 驱动 N20（方向+PWM 软启+限幅），MG90S 转向。
