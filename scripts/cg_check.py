@@ -19,7 +19,7 @@ def load(name, mat, rot=None, loc=(0, 0, 0)):
 
 parts = []
 parts.append(load("frame_petg", "PETG"))
-for x in (0, 240):  # 前后主轮
+for x in (0, 260):  # 前后主轮
     parts.append(load("wheel_rim_petg", "PETG", ((1, 0, 0), 90), (x, 0, 50)))
     parts.append(load("wheel_tire_tpu", "TPU", ((1, 0, 0), 90), (x, 0, 50)))
 for y in (55, -55):  # 助学轮
@@ -46,7 +46,7 @@ print(f"质心 CG = ({CG[0]:.0f}, {CG[1]:.0f}, {CG[2]:.0f}) mm")
 # 支撑多边形：前轮接地点(240,0) + 助学轮(0,±55)（后轮(0,0)在边内）
 def inside(px, py):
     # 三角形 (240,0),(0,55),(0,-55)
-    A, B, C = (240, 0), (0, 55), (0, -55)
+    A, B, C = (260, 0), (0, 55), (0, -55)
     def sign(p1, p2, p3):
         return (p1[0]-p3[0])*(p2[1]-p3[1]) - (p2[0]-p3[0])*(p1[1]-p3[1])
     d1, d2, d3 = sign((px,py),A,B), sign((px,py),B,C), sign((px,py),C,A)

@@ -13,18 +13,18 @@ OUT = os.path.join(HERE, "out")
 os.makedirs(OUT, exist_ok=True)
 pin_r = FIT["pivot_pin_M3"] / 2
 
-# 舵机座：底板+两侧壁+连头管安装_tab_（M3 热熔螺母）
-br = Box(26, 16, 4).translate((195, 0, 128))
-br += Box(26, 3, 20).translate((195, 8, 138))
-br += Box(26, 3, 20).translate((195, -8, 138))
-br += Box(14, 16, 4).translate((208, 0, 128))
-br -= ybore((208, 6, 128), FIT["heatset_M3"] / 2, 6)
-br -= ybore((208, -6, 128), FIT["heatset_M3"] / 2, 6)
+# 舵机座：上衣管上方，立柱接上衣管顶面；舵机输出臂 y=10 侧置
+br = Box(26, 16, 4).translate((198, 0, 166))
+br += Box(26, 3, 12).translate((198, 8, 172))
+br += Box(26, 3, 12).translate((198, -8, 172))
+br += Box(6, 16, 8).translate((198, 0, 162))
+br -= Cylinder(FIT["heatset_M3"] / 2, 10).translate((198, 5, 160))
+br -= Cylinder(FIT["heatset_M3"] / 2, 10).translate((198, -5, 160))
 
-# 推杆：舵机臂(195,0,147) -> 前叉转向臂(198,0,156)，两端低阻销孔
-rod = link_solid((195, 0, 147), (198, 0, 156), 6, 4)
-rod -= ybore((195, 0, 147), pin_r, 8)
-rod -= ybore((198, 0, 156), pin_r, 8)
+# 推杆：舵机臂(198,10,172) -> 前叉转向臂(206,10,166)，y=10 侧置避上衣管
+rod = link_solid((198, 10, 172), (206, 10, 166), 6, 4)
+rod -= ybore((198, 10, 172), pin_r, 8)
+rod -= ybore((206, 10, 166), pin_r, 8)
 
 # 车把：茎(转向管顶->把横) + 把横沿Y + 握把
 hb = beam((208, 0, 155), (206, 0, 165), 5)

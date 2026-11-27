@@ -54,8 +54,9 @@ MG90S 宽 22.8mm 不进头管 φ12 孔 → **外置舵机座**（头管后/上�
    +--> 5V/3A buck (独立隔离舵机供电)
             +--> ESP32-C3 SuperMini (5V)
             +--> MG90S (5V, 信号 <-- ESP32)
-ESP32: WiFi AP "PelicanBike" → 手机大按钮网页 → WebSocket → 电机/舵机 ; 状态 LED
+ESP32: WiFi AP "PelicanBike" → 手机大按钮网页 → HTTP GET /cmd（按住300ms心跳）→ 电机/舵机 ; 状态 LED
 ```
+> 漂移声明（评审#5）：M2 原写 WebSocket，实现为逐事件 HTTP GET + 按住心跳（无 WebSocket 库依赖，更简）。以本行为准。
 
 ### 6.2 供电与安全
 成品 2S 7.4V 带保护板组 + 插头充电器（免裸芯焊接，Cindy 插拔）；全系统低压直流，无市电进入。DRV8833 上限 10.8V；N20 额定 6V，固件限 PWM ≤80% + 软启。电池反接保护（keyed 接头 + 保险丝/PTC）。舵机堵转电流大，buck 独立供电 + VM bulk 电容防拉垮 MCU。

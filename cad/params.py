@@ -10,7 +10,7 @@ DENSITY = {
 }
 
 # 整车布置（M2 初值）
-WHEELBASE = 240.0
+WHEELBASE = 260.0   # 评审整改: 240->260 加前叉rake，前轮避开头管干涉
 WHEEL_R = 50.0        # 主轮半径（轮径 100）
 WHEEL_W = 12.0        # 主轮宽
 TIRE_T = 4.0          # 胎厚

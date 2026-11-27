@@ -47,7 +47,7 @@ add_stl("servo_bracket_petg")
 add_stl("pushrod_peba", color=C_peba)
 add_stl("handlebar_petg")
 rw_r = add_stl("wheel_rim_petg", (0, 0, 0.05), X90); rw_t = add_stl("wheel_tire_tpu", (0, 0, 0.05), X90, C_tpu)
-fw_r = add_stl("wheel_rim_petg", (0.24, 0, 0.05), X90); fw_t = add_stl("wheel_tire_tpu", (0.24, 0, 0.05), X90, C_tpu)
+fw_r = add_stl("wheel_rim_petg", (0.26, 0, 0.05), X90); fw_t = add_stl("wheel_tire_tpu", (0.26, 0, 0.05), X90, C_tpu)
 tr = [add_stl("train_rim_petg", (0, y, 0.031)) for y in (0.055, -0.055)]
 tt = [add_stl("train_tire_tpu", (0, y, 0.031), None, C_tpu) for y in (0.055, -0.055)]
 crank = add_stl("crank_peba", (0.095, 0, 0.06), None, C_peba)
@@ -62,14 +62,14 @@ add_stl("pelican_beak_tpu", (0.075, 0, 0.185), None, C_orange)
 # ---- 紧固件/外购件 ----
 prim('cyl', (0, 0, 0.05), (0.004, 0.004, 0.12), X90, name="axle_rear")
 prim('cyl', (0.095, 0, 0.06), (0.004, 0.004, 0.04), X90, name="axle_crank")
-prim('cyl', (0.24, 0, 0.05), (0.004, 0.004, 0.04), X90, name="axle_front")
-for x, z in [(0, 0.05), (0.095, 0.06), (0.24, 0.05)]:
+prim('cyl', (0.26, 0, 0.05), (0.004, 0.004, 0.04), X90, name="axle_front")
+for x, z in [(0, 0.05), (0.095, 0.06), (0.26, 0.05)]:
     for y in (0.01, -0.01):
         prim('cyl', (x, y, z), (0.011, 0.0035, 0.011), X90, C_black, name="bearing608")
 for y in (0.03, -0.03):
     prim('cyl', (0.075, y, 0.15), (0.0015, 0.0015, 0.012), X90, name="pin_hip")
 prim('box', (-0.022, 0, 0.058), (0.024, 0.012, 0.012), None, C_black, name="motor_N20")
-prim('box', (0.195, 0, 0.138), (0.023, 0.012, 0.022), None, C_black, name="servo_MG90S")
+prim('box', (0.198, 0, 0.172), (0.023, 0.012, 0.022), None, C_black, name="servo_MG90S")
 prim('box', (0.12, 0, 0.08), (0.065, 0.035, 0.018), None, C_batt, name="battery_2S")
 prim('box', (0.12, 0, 0.092), (0.06, 0.035, 0.0016), None, C_pcb, name="pcb_carrier")
 prim('box', (-0.011, 0, 0.054), (0.024, 0.004, 0.006), None, C_black, name="belt_motor_rear")

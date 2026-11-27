@@ -43,7 +43,7 @@ except Exception:
 # 孔：后轴/五通轴承座（Y 向），头管转向孔（沿转向轴）
 frame -= ybore(R, seat_r, PLATE_T + 4)
 frame -= ybore(BB, seat_r, PLATE_T + 4)
-frame -= beam((223.2, 0, 89.5), (208.8, 0, 155.5), 6)   # 转向孔与头管 HB->HT 同轴（评审#6 偏漂修）
+frame -= beam((225.3, 0, 79.7), (206.7, 0, 165.3), 6)   # 转向孔贯穿头管全长含底端帽，与转向管同轴
 
 # 助学轮臂 + 电机座
 frame += Box(8, 62, 8).translate((0, 24, 31))     # 助学轮臂（嵌入车架板14mm，离地1mm近触）

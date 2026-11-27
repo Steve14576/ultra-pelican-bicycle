@@ -31,7 +31,7 @@ def add(name, m, loc=(0, 0, 0), rot=None, mirror=False):
 
 X90 = (math.radians(90), 0, 0)
 add("frame_petg", M_petg)
-for x in (0, 0.24):
+for x in (0, 0.26):
     add("wheel_rim_petg", M_petg, (x, 0, 0.05), X90)
     add("wheel_tire_tpu", M_tpu, (x, 0, 0.05), X90)
 for y in (0.055, -0.055):
