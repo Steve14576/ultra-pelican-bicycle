@@ -22,6 +22,10 @@ for dx, dy in [(-25, -12), (-25, 12), (25, -12), (25, 12)]:  # PCB standoff
     tray += Box(6, 6, 8).translate((C[0] + dx, dy, C[2] - 10))
     tray -= Pos(C[0] + dx, dy, C[2] - 8) * Cylinder(FIT["heatset_M3"] / 2, 12)
 
+tray -= Box(2, 44, 4).translate((100, 0, 79))   # 扎带槽（应力释放/固定电池）
+tray -= Box(2, 44, 4).translate((140, 0, 79))
+tray += Box(70, 4, 5).translate((120, 20, 100))  # 走线应力释放脊
+
 export_stl(tray, os.path.join(OUT, "electronics_tray_petg.stl"))
 export_step(tray, os.path.join(OUT, "electronics_tray_petg.step"))
 print(f"electronics_tray PETG mass={mass_g(tray.volume,'PETG'):.1f}g")

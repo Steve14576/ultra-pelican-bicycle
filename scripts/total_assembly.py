@@ -59,6 +59,9 @@ add_stl("pelican_skeleton_petcf", color=C_cf)
 add_stl("electronics_tray_petg")
 add_stl("pelican_body_tpu", (0.075, 0, 0.185), None, C_white)
 add_stl("pelican_beak_tpu", (0.075, 0, 0.185), None, C_orange)
+add_stl("pelican_belly_plug_tpu", (0.075, 0, 0.140), None, C_white)
+for y in (0.016, -0.016):
+    add_stl("bushing_peba", (0.075, y, 0.15), X90, C_peba)
 # ---- 紧固件/外购件 ----
 prim('cyl', (0, 0, 0.05), (0.004, 0.004, 0.12), X90, name="axle_rear")
 prim('cyl', (0.095, 0, 0.06), (0.004, 0.004, 0.04), X90, name="axle_crank")

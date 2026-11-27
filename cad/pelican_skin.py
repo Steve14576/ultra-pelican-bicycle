@@ -42,6 +42,20 @@ body = fuse([
     sphere((0, -0.045, 0.01), (0.05, 0.008, 0.028)),
 ], "pelican_body")
 
+# M8: 空心软壳(壁1.5mm) + 腹部填棉口 + 闭合盖
+sol = body.modifiers.new("sol", 'SOLIDIFY'); sol.thickness = 0.0015; sol.offset = -1
+bpy.context.view_layer.objects.active = body
+bpy.ops.object.modifier_apply(modifier=sol.name)
+bpy.ops.mesh.primitive_cube_add(size=1, location=(0, 0, -0.045))
+belly = bpy.context.active_object; belly.scale = (0.05, 0.04, 0.02)
+boo = body.modifiers.new("boo", 'BOOLEAN'); boo.operation = 'DIFFERENCE'; boo.object = belly
+bpy.context.view_layer.objects.active = body
+bpy.ops.object.modifier_apply(modifier=boo.name)
+bpy.data.objects.remove(belly, do_unlink=True)
+bpy.ops.mesh.primitive_uv_sphere_add(segments=24, ring_count=12, radius=1, location=(0, 0, -0.045))
+plug = bpy.context.active_object; plug.name = "pelican_belly_plug"; plug.scale = (0.026, 0.021, 0.008)
+bpy.ops.object.shade_smooth()
+
 beak = fuse([
     cone((0.12, 0, 0.10), 0.012, 0.002, 0.07, (0, math.radians(90), 0)),
     sphere((0.10, 0, 0.083), (0.03, 0.014, 0.018)),
@@ -55,7 +69,7 @@ def mat(name, color):
 body.data.materials.append(mat("white", (0.9, 0.9, 0.88)))
 beak.data.materials.append(mat("orange", (0.9, 0.45, 0.1)))
 
-for o, name in [(body, "pelican_body_tpu"), (beak, "pelican_beak_tpu")]:
+for o, name in [(body, "pelican_body_tpu"), (beak, "pelican_beak_tpu"), (plug, "pelican_belly_plug_tpu")]:
     bpy.ops.object.select_all(action='DESELECT'); o.select_set(True)
     bpy.context.view_layer.objects.active = o
     bpy.ops.wm.stl_export(filepath=os.path.join(OUT, name + ".stl"), export_selected_objects=True, global_scale=1000)

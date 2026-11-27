@@ -5,6 +5,7 @@
 import os, sys, math
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from build123d import Cylinder, Pos, export_stl, export_step
+from common import ybore
 from params import WHEEL_R, WHEEL_W, TIRE_T, FIT, mass_g
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -27,6 +28,9 @@ body -= groove
 tire = Cylinder(WHEEL_R, WHEEL_W) - Cylinder(rim_r, WHEEL_W)
 tongue = Cylinder(rim_r - 0.2, 3.8) - Cylinder(rim_r - 2 + 0.2, 3.8)
 tire += tongue
+for i in range(12):   # 胎纹抓地（评审M8）
+    a = i * 2 * math.pi / 12
+    tire -= ybore(((WHEEL_R - 1) * math.cos(a), 0, (WHEEL_R - 1) * math.sin(a)), 1.5, WHEEL_W + 2)
 
 for name, part, mat in [("wheel_rim_petg", body, "PETG"), ("wheel_tire_tpu", tire, "TPU")]:
     export_stl(part, os.path.join(OUT, name + ".stl"))

@@ -19,6 +19,9 @@
 打印,舵机座,servo_bracket_petg,PETG,1,6.3,,外置MG90S
 打印,推杆,pushrod_peba,PEBA,1,0.3,,舵机臂-前叉转向臂
 打印,车把,handlebar_petg,PETG,1,10.4,,转向管顶+握把
+打印,轴套,bushing_peba,PEBA,8,0.07,,低阻铰链OD5ID3.2
+打印,腹盖,pelican_belly_plug_tpu,TPU,1,,,填棉口闭合
+打印,打印备件,bushing_peba/销,PEBA/PETG,1批,,,易损备件余量
 采购,主控,ESP32-C3 SuperMini,淘宝,1,,10,
 采购,驱动电机,N20 6V 150rpm,淘宝,1,,9,
 采购,电机驱动,DRV8833模块,淘宝,1,,4,

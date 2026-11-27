@@ -49,6 +49,8 @@ frame -= beam((225.3, 0, 79.7), (206.7, 0, 165.3), 6)   # 转向孔贯穿头管�
 frame += Box(8, 62, 8).translate((0, 24, 31))     # 助学轮臂（嵌入车架板14mm，离地1mm近触）
 frame += Box(8, 62, 8).translate((0, -24, 31))
 frame += Box(26, 18, 6).translate((-22, 0, 58))
+frame -= Box(10, 3.2, 8).translate((-22, 4, 58))   # 滑槽（电机沿X滑动张紧皮带）
+frame -= Box(10, 3.2, 8).translate((-22, -4, 58))
 
 export_stl(frame, os.path.join(OUT, "frame_petg.stl"))
 export_step(frame, os.path.join(OUT, "frame_petg.step"))
