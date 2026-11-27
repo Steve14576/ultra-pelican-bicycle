@@ -43,11 +43,11 @@ except Exception:
 # 孔：后轴/五通轴承座（Y 向），头管转向孔（沿转向轴）
 frame -= ybore(R, seat_r, PLATE_T + 4)
 frame -= ybore(BB, seat_r, PLATE_T + 4)
-frame -= beam((224, 0, 90), (208, 0, 155), 6)
+frame -= beam((223.2, 0, 89.5), (208.8, 0, 155.5), 6)   # 转向孔与头管 HB->HT 同轴（评审#6 偏漂修）
 
 # 助学轮臂 + 电机座
-frame += Box(8, 55, 8).translate((0, 27.5, 38))    # 助学轮臂（矩形_bar_）
-frame += Box(8, 55, 8).translate((0, -27.5, 38))
+frame += Box(8, 62, 8).translate((0, 24, 31))     # 助学轮臂（嵌入车架板14mm，离地1mm近触）
+frame += Box(8, 62, 8).translate((0, -24, 31))
 frame += Box(26, 18, 6).translate((-22, 0, 58))
 
 export_stl(frame, os.path.join(OUT, "frame_petg.stl"))

@@ -16,6 +16,9 @@
 打印,电控托盘,electronics_tray_petg,PETG,1,28.5,,
 打印,鹈鹕软皮,pelican_body_tpu,TPU,1,,,壁厚1.5空心塞棉花
 打印,鹈鹕嘴囊,pelican_beak_tpu,TPU,1,,,橙色
+打印,舵机座,servo_bracket_petg,PETG,1,6.3,,外置MG90S
+打印,推杆,pushrod_peba,PEBA,1,0.3,,舵机臂-前叉转向臂
+打印,车把,handlebar_petg,PETG,1,10.4,,转向管顶+握把
 采购,主控,ESP32-C3 SuperMini,淘宝,1,,10,
 采购,驱动电机,N20 6V 150rpm,淘宝,1,,9,
 采购,电机驱动,DRV8833模块,淘宝,1,,4,

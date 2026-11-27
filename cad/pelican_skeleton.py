@@ -17,7 +17,7 @@ spine = seg_face((75, 0, 150), (115, 0, 205), 20)
 sk = extrude(spine, 6, both=True)
 
 # 横杆/座用矩形_bar_（扁平面贴平面，非圆杆拼接），与脊柱板平齐连通
-sk += Box(12, 60, 12).translate((75, 0, 150))     # 髋横杆
+sk += Box(12, 40, 12).translate((75, 0, 150))     # 髋横杆（髋孔与脚踏踝销同平面 y=±16，防腿链锁死）
 sk += Box(12, 56, 10).translate((95, 0, 185))     # 翅根横杆
 sk += Box(10, 10, 10).translate((95, 28, 185))    # 翅根座
 sk += Box(10, 10, 10).translate((95, -28, 185))
@@ -27,8 +27,8 @@ try:
 except Exception:
     pass
 
-sk -= ybore((75, 30, 150), pin_r, 14)             # 髋铰链孔（低阻）
-sk -= ybore((75, -30, 150), pin_r, 14)
+sk -= ybore((75, 16, 150), pin_r, 14)             # 髋铰链孔（低阻，y=±16 与踝同平面）
+sk -= ybore((75, -16, 150), pin_r, 14)
 sk -= ybore((95, 28, 185), pin_r, 12)             # 翅自锁铰链孔
 sk -= ybore((95, -28, 185), pin_r, 12)
 sk -= ybore((115, 0, 205), pin_r, 18)             # 颈铰链孔
