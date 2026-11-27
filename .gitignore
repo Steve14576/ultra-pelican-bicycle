@@ -19,3 +19,5 @@ scratch/
 
 # slicer / build intermediates (keep deliverable STL/3MF/STEP tracked)
 *.gcode.tmp
+.pio/
+result.json
