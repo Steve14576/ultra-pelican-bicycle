@@ -21,3 +21,4 @@ scratch/
 *.gcode.tmp
 .pio/
 result.json
+renders/seq/
