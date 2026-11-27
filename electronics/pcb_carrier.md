@@ -1,4 +1,6 @@
-# 载体 PCB 设计包（M4，嘉立创EDA专业版 + JLCPCB）
+# 载体 PCB 设计包（可选参考，非 fab-ready）
+
+> 状态（评审#4 整改）：无 EDA 工程/Gerber，Cindy 无法据此落板。**主路径为洞洞板**，见 [perfboard_build.md](perfboard_build.md)。本文仅作将来定制 PCB 的设计输入参考；未出 Gerber 前不得列入 BOM/手册。
 
 决策：定制载体板（through-hole 模块插座），不飞线。Cindy 只焊少数连接器、插模块。
 本文件为可直接在嘉立创EDA专业版落板的完整设计输入：outline / 孔位 / 插座 / 网络 / 线宽。

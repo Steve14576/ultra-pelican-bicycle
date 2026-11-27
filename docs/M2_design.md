@@ -63,8 +63,8 @@ ESP32: WiFi AP "PelicanBike" → 手机大按钮网页 → WebSocket → 电机/
 ### 6.3 遥控
 ESP32-C3 自建热点，手机直连无需路由器，网页大按钮（前进/后退/左转/右转/停）。零额外遥控硬件。
 
-### 6.4 PCB【已定：定制载体板】
-嘉立创EDA专业版设计 + JLCPCB 打样。模块载体板（through-hole）：SuperMini/DRV8833/buck 母排座 + 带标签 JST/螺钉端子（电池/电机/舵机）+ 开关 + LED。Cindy 只焊少数连接器、插模块，不飞线；模块可单换。不做 SMD 集成（免贴片复杂度，维修友好）。洞洞板仅兜底。
+### 6.4 电控载体【评审整改：洞洞板主路径】
+原"定制载体板"无 Gerber/EDA 工程、Cindy 无法落板（评审#4）→ **主路径改洞洞板飞线**，逐孔布局+网络接线表见 [perfboard_build.md](../electronics/perfboard_build.md)（brief 允许）。模块母排座插接、可单换。pcb_carrier.md 降为可选参考（非 fab-ready）；若后续要定制 PCB，须先出 EDA 工程+Gerber 再列入 BOM。
 
 ## 7. 仿真与校核决策【已定，先验驱动一次成型】
 

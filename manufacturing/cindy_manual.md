@@ -35,13 +35,14 @@
 
 ---
 
-## 3. 焊接载体 PCB
+## 3. 焊接洞洞板电控
 
-看 [pinout.md](../electronics/pinout.md) 和 [pcb_carrier.md](../electronics/pcb_carrier.md)。
+看 [perfboard_build.md](../electronics/perfboard_build.md)（逐孔布局+网络接线表）和 [pinout.md](../electronics/pinout.md)。
 
-1. 把母排座（J4/J5/J6）、JST 座（J1/J2）、舵机排针 J3、开关 SW1、保险丝 F1、LED+电阻 焊到 PCB 对应位号。
-2. 焊点光亮圆润，不连锡。焊完用万用表**蜂鸣档**测：电池座正负极之间**不响**（无短路）才合格。
-3. 插上模块：SuperMini→J4，DRV8833→J5，buck→J6。注意方向（对着丝印）。
+1. 按布局把母排座、JST 座、开关、保险丝、LED+电阻 焊到洞洞板对应孔位。
+2. 按**网络接线表**焊跨线；功率线（VM/GND/5V）用粗线或加锡拖焊。焊点光亮不连锡。
+3. 焊完万用表**蜂鸣档**测电池座正负极之间**不响**（无短路）才合格。
+4. 插模块：SuperMini/DRV8833/buck 对丝印方向插母排座。VM-GND 加 ≥100µF 电容。
 
 ---
 

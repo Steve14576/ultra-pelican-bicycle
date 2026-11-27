@@ -43,13 +43,16 @@ button.stop{background:#d43a3a}
 </style></head><body>
 <h2>鹈鹕自行车</h2>
 <p style="color:#999">按住按钮运行，松开即停</p>
-<div class="row"><button ontouchstart="cmd('f')" ontouchend="cmd('s')" onmousedown="cmd('f')" onmouseup="cmd('s')">前进</button></div>
-<div class="row"><button ontouchstart="cmd('l')" ontouchend="cmd('s')" onmousedown="cmd('l')" onmouseup="cmd('s')">左转</button>
+<div class="row"><button ontouchstart="down('f')" ontouchend="up()" onmousedown="down('f')" onmouseup="up()">前进</button></div>
+<div class="row"><button ontouchstart="down('l')" ontouchend="up()" onmousedown="down('l')" onmouseup="up()">左转</button>
 <button class="stop" ontouchstart="cmd('s')" onmousedown="cmd('s')">停</button>
-<button ontouchstart="cmd('r')" ontouchend="cmd('s')" onmousedown="cmd('r')" onmouseup="cmd('s')">右转</button></div>
-<div class="row"><button ontouchstart="cmd('b')" ontouchend="cmd('s')" onmousedown="cmd('b')" onmouseup="cmd('s')">后退</button></div>
+<button ontouchstart="down('r')" ontouchend="up()" onmousedown="down('r')" onmouseup="up()">右转</button></div>
+<div class="row"><button ontouchstart="down('b')" ontouchend="up()" onmousedown="down('b')" onmouseup="up()">后退</button></div>
 <script>
 function cmd(c){fetch('/cmd?c='+c).catch(()=>{});}
+let hold=null;
+function down(c){cmd(c); if(hold)clearInterval(hold); hold=setInterval(()=>cmd(c),300);}
+function up(){if(hold){clearInterval(hold);hold=null;} cmd('s');}
 </script></body></html>
 )HTML";
 
