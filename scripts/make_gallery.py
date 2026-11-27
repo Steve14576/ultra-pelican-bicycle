@@ -10,6 +10,10 @@ os.makedirs(OUT, exist_ok=True)
 
 items = [
     ("assembly_full.png", "整车效果图：鹈鹕骑辅助轮自行车（招牌画面）"),
+    ("motion_01.png", "运动仿真 t=0：驱动链+腿连杆+转向"),
+    ("motion_12.png", "运动仿真 t=12：曲柄相位/腿蹬踏"),
+    ("motion_24.png", "运动仿真 t=24：半周期"),
+    ("motion_36.png", "运动仿真 t=36：转向摆幅"),
     ("pelican_skin.png", "鹈鹕软皮：白身 + 橙长嘴 + 喉囊"),
     ("frame_petg.png", "车架 v2：中面轮廓对称挤出等厚板 + 倒角"),
     ("fork_petg.png", "前叉：转向管 + 双叉片 + 前轴座 + 舵机臂"),
